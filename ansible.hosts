@@ -1,19 +1,10 @@
-[leaf1]
-172.16.1.222
+[cumulus]
+leaf1 ansible_ssh_host=172.16.1.222
+spine1 ansible_ssh_host=172.16.1.220
+spine2 ansible_ssh_host=172.16.1.221
 
-[leaf2]
-172.16.1.223
-
-[spine1]
-172.16.1.220
-
-[spine2]
-172.16.1.221
-
-[cumulus:children]
-leaf1
-spine1
-spine2
+[cisco]
+leaf2 ansible_ssh_host=172.16.1.223
 
 [network:children]
 cumulus

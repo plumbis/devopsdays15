@@ -1,0 +1,14 @@
+---
+- hosts: cumulus 
+  sudo: yes
+  tasks:
+  - name: Copy Interfaces File 
+    copy: src={{ inventory_hostname }}/interfaces dest=/etc/network/interfaces  
+    notify:
+    - apply interfaces
+  - name: Set Hostname
+    hostname: name={{ inventory_hostname }} 
+
+  handlers:
+   - name: apply interfaces
+     command: ifreload -a
