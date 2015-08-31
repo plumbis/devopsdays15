@@ -1,0 +1,15 @@
+auto eth0
+iface eth0
+ address 172.16.1.221/24
+ gateway 172.16.1.1
+
+auto swp1
+iface swp1
+ alias Spine2-Leaf1 Connection
+ address 10.2.1.2/30
+
+auto swp2
+iface swp2
+ alias Spine2-Leaf2 Connection
+ address 10.2.2.2/30
+ 
