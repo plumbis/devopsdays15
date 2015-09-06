@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 01:23:12 UTC Sun Sep 6 2015 by cumulus
+! Last configuration change at 04:50:48 UTC Sun Sep 6 2015 by cumulus
 !
 version 15.5
 service timestamps debug datetime msec
@@ -91,6 +91,9 @@ ip scp server enable
 ! 
 ! 
 !
+interface Loopback1
+ ip address 2.2.2.2 255.255.255.255
+!
 interface GigabitEthernet1
  ip address 172.16.1.223 255.255.255.0
  negotiation auto
@@ -105,6 +108,14 @@ interface GigabitEthernet3
  ip address 10.2.2.1 255.255.255.252
  negotiation auto
  cdp enable
+!
+router bgp 2
+ bgp log-neighbor-changes
+ network 2.2.2.2 mask 255.255.255.255
+ network 10.1.1.0 mask 255.255.255.0
+ network 10.1.2.0 mask 255.255.255.0
+ neighbor 10.1.1.2 remote-as 11
+ neighbor 10.1.2.2 remote-as 22
 !
 !
 virtual-service csr_mgmt

@@ -6,15 +6,27 @@
     copy: src={{ inventory_hostname }}/interfaces dest=/etc/network/interfaces  
     notify:
     - apply interfaces
+
   - name: Set Hostname
     hostname: name={{ inventory_hostname }} 
+
   - name: enable BGP in Quagga Daemons
     cl_quagga_protocol: name="bgpd" state="present"
     notify:
     - restart quagga
 
+  - name: Enable Quagga Reload
+    lineinfile: dest=/etc/default/quagga regexp="ENABLE_RELOAD=no" line="ENABLE_RELOAD=yes" state=present
+
+  - name: Copy Quagga.conf
+    copy: src={{ inventory_hostname }}/Quagga.conf dest=/etc/quagga/Quagga.conf
+    notify:
+    - reload quagga
+
   handlers:
    - name: apply interfaces
      command: ifreload -a
    - name: restart quagga
-     command: name=quagga state=restarted
+     service: name=quagga state=restarted
+   - name: reload quagga
+     service: name=quagga state=reloaded

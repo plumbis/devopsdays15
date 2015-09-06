@@ -1,3 +1,7 @@
+auto lo
+iface lo
+ address 11.11.11.11/32
+
 auto eth0
 iface eth0
  address 172.16.1.220/24
