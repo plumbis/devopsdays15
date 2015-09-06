@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 06:20:02 UTC Sun Sep 6 2015 by cumulus
+! Last configuration change at 06:58:52 UTC Sun Sep 6 2015 by cumulus
 !
 version 15.5
 service timestamps debug datetime msec
@@ -115,11 +115,22 @@ interface GigabitEthernet3
 !
 router bgp 2
  bgp log-neighbor-changes
- network 2.2.2.2 mask 255.255.255.255
- network 10.1.1.0 mask 255.255.255.0
- network 10.1.2.0 mask 255.255.255.0
  neighbor 10.1.2.2 remote-as 11
  neighbor 10.2.2.2 remote-as 22
+ !
+ address-family ipv4
+  network 2.2.2.2 mask 255.255.255.255
+  network 10.1.1.0 mask 255.255.255.0
+  network 10.1.2.0 mask 255.255.255.0
+  neighbor 10.1.2.2 activate
+  neighbor 10.2.2.2 activate
+ exit-address-family
+ !
+ address-family ipv6
+  network 2001:DB8::2/128
+  neighbor 10.1.2.2 activate
+  neighbor 10.2.2.2 activate
+ exit-address-family
 !
 !
 virtual-service csr_mgmt
