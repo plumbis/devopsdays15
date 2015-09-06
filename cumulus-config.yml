@@ -8,7 +8,13 @@
     - apply interfaces
   - name: Set Hostname
     hostname: name={{ inventory_hostname }} 
+  - name: enable BGP in Quagga Daemons
+    cl_quagga_protocol: name="bgpd" state="present"
+    notify:
+    - restart quagga
 
   handlers:
    - name: apply interfaces
      command: ifreload -a
+   - name: restart quagga
+     command: name=quagga state=restarted
