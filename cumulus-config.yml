@@ -16,8 +16,8 @@
     - restart quagga
 
   - name: Enable Quagga Reload
-    lineinfile: dest=/etc/default/quagga regexp="ENABLE_RELOAD=no" line="ENABLE_RELOAD=yes" state=present
-
+    replace: dest=/etc/default/quagga regexp="ENABLE_RELOAD=no" replace="ENABLE_RELOAD=yes"
+  
   - name: Copy Quagga.conf
     copy: src={{ inventory_hostname }}/Quagga.conf dest=/etc/quagga/Quagga.conf
     notify:
