@@ -12,10 +12,10 @@ auto swp1
 iface swp1
  alias Spine1-Leaf1 Connection
  address 10.1.1.2/30
- address 2001:db8::1:1:2/127
+ address 2001:db8:1:1::2/64
 
 auto swp2
 iface swp2
  alias Spine1-Leaf2 Connection
  address 10.1.2.2/30
- address 2001:db8::1:2:2/127 
+ address 2001:db8:1:2::2/64 
