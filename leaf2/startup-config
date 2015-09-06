@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 01:17:26 UTC Sun Sep 6 2015 by cumulus
+! Last configuration change at 01:23:12 UTC Sun Sep 6 2015 by cumulus
 !
 version 15.5
 service timestamps debug datetime msec
@@ -97,12 +97,12 @@ interface GigabitEthernet1
  cdp enable
 !
 interface GigabitEthernet2
- no ip address
+ ip address 10.1.2.1 255.255.255.252
  negotiation auto
  cdp enable
 !
 interface GigabitEthernet3
- no ip address
+ ip address 10.2.2.1 255.255.255.252
  negotiation auto
  cdp enable
 !
